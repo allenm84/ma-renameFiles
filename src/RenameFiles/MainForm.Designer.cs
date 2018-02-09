@@ -50,6 +50,11 @@
       this.panel2 = new System.Windows.Forms.Panel();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.gridRules = new System.Windows.Forms.DataGridView();
+      this.enabledDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+      this.containsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.patternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.formatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.renameRuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.editorSelectedRule = new System.Windows.Forms.PropertyGrid();
       this.label2 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,12 +62,9 @@
       this.btnNewDirectory = new System.Windows.Forms.Button();
       this.btnNewRule = new System.Windows.Forms.Button();
       this.btnRun = new System.Windows.Forms.Button();
-      this.enabledDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-      this.containsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.patternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.formatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.renameRuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.timerSaveSettings = new System.Windows.Forms.Timer(this.components);
+      this.directoriesMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.deleteDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
@@ -76,9 +78,10 @@
       this.splitContainer2.Panel2.SuspendLayout();
       this.splitContainer2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.gridRules)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.renameRuleBindingSource)).BeginInit();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.renameRuleBindingSource)).BeginInit();
+      this.directoriesMenuStrip.SuspendLayout();
       this.SuspendLayout();
       // 
       // splitContainer1
@@ -137,6 +140,7 @@
             this.lastWriteTimeDataGridViewTextBoxColumn,
             this.lastWriteTimeUtcDataGridViewTextBoxColumn,
             this.attributesDataGridViewTextBoxColumn});
+      this.gridDirectories.ContextMenuStrip = this.directoriesMenuStrip;
       this.gridDirectories.DataSource = this.directoryInfoBindingSource;
       this.gridDirectories.Dock = System.Windows.Forms.DockStyle.Fill;
       this.gridDirectories.Location = new System.Drawing.Point(0, 20);
@@ -322,6 +326,45 @@
       this.gridRules.TabIndex = 2;
       this.gridRules.SelectionChanged += new System.EventHandler(this.gridRules_SelectionChanged);
       // 
+      // enabledDataGridViewCheckBoxColumn
+      // 
+      this.enabledDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+      this.enabledDataGridViewCheckBoxColumn.DataPropertyName = "Enabled";
+      this.enabledDataGridViewCheckBoxColumn.FillWeight = 40.60914F;
+      this.enabledDataGridViewCheckBoxColumn.HeaderText = "Enabled";
+      this.enabledDataGridViewCheckBoxColumn.MinimumWidth = 20;
+      this.enabledDataGridViewCheckBoxColumn.Name = "enabledDataGridViewCheckBoxColumn";
+      this.enabledDataGridViewCheckBoxColumn.ReadOnly = true;
+      this.enabledDataGridViewCheckBoxColumn.Width = 20;
+      // 
+      // containsDataGridViewTextBoxColumn
+      // 
+      this.containsDataGridViewTextBoxColumn.DataPropertyName = "Contains";
+      this.containsDataGridViewTextBoxColumn.FillWeight = 119.797F;
+      this.containsDataGridViewTextBoxColumn.HeaderText = "Contains";
+      this.containsDataGridViewTextBoxColumn.Name = "containsDataGridViewTextBoxColumn";
+      this.containsDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // patternDataGridViewTextBoxColumn
+      // 
+      this.patternDataGridViewTextBoxColumn.DataPropertyName = "Pattern";
+      this.patternDataGridViewTextBoxColumn.FillWeight = 119.797F;
+      this.patternDataGridViewTextBoxColumn.HeaderText = "Pattern";
+      this.patternDataGridViewTextBoxColumn.Name = "patternDataGridViewTextBoxColumn";
+      this.patternDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // formatDataGridViewTextBoxColumn
+      // 
+      this.formatDataGridViewTextBoxColumn.DataPropertyName = "Format";
+      this.formatDataGridViewTextBoxColumn.FillWeight = 119.797F;
+      this.formatDataGridViewTextBoxColumn.HeaderText = "Format";
+      this.formatDataGridViewTextBoxColumn.Name = "formatDataGridViewTextBoxColumn";
+      this.formatDataGridViewTextBoxColumn.ReadOnly = true;
+      // 
+      // renameRuleBindingSource
+      // 
+      this.renameRuleBindingSource.DataSource = typeof(RenameFiles.RenameRule);
+      // 
       // editorSelectedRule
       // 
       this.editorSelectedRule.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -413,49 +456,25 @@
       this.btnRun.UseVisualStyleBackColor = true;
       this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
       // 
-      // enabledDataGridViewCheckBoxColumn
-      // 
-      this.enabledDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-      this.enabledDataGridViewCheckBoxColumn.DataPropertyName = "Enabled";
-      this.enabledDataGridViewCheckBoxColumn.FillWeight = 40.60914F;
-      this.enabledDataGridViewCheckBoxColumn.HeaderText = "Enabled";
-      this.enabledDataGridViewCheckBoxColumn.MinimumWidth = 20;
-      this.enabledDataGridViewCheckBoxColumn.Name = "enabledDataGridViewCheckBoxColumn";
-      this.enabledDataGridViewCheckBoxColumn.ReadOnly = true;
-      this.enabledDataGridViewCheckBoxColumn.Width = 20;
-      // 
-      // containsDataGridViewTextBoxColumn
-      // 
-      this.containsDataGridViewTextBoxColumn.DataPropertyName = "Contains";
-      this.containsDataGridViewTextBoxColumn.FillWeight = 119.797F;
-      this.containsDataGridViewTextBoxColumn.HeaderText = "Contains";
-      this.containsDataGridViewTextBoxColumn.Name = "containsDataGridViewTextBoxColumn";
-      this.containsDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // patternDataGridViewTextBoxColumn
-      // 
-      this.patternDataGridViewTextBoxColumn.DataPropertyName = "Pattern";
-      this.patternDataGridViewTextBoxColumn.FillWeight = 119.797F;
-      this.patternDataGridViewTextBoxColumn.HeaderText = "Pattern";
-      this.patternDataGridViewTextBoxColumn.Name = "patternDataGridViewTextBoxColumn";
-      this.patternDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // formatDataGridViewTextBoxColumn
-      // 
-      this.formatDataGridViewTextBoxColumn.DataPropertyName = "Format";
-      this.formatDataGridViewTextBoxColumn.FillWeight = 119.797F;
-      this.formatDataGridViewTextBoxColumn.HeaderText = "Format";
-      this.formatDataGridViewTextBoxColumn.Name = "formatDataGridViewTextBoxColumn";
-      this.formatDataGridViewTextBoxColumn.ReadOnly = true;
-      // 
-      // renameRuleBindingSource
-      // 
-      this.renameRuleBindingSource.DataSource = typeof(RenameFiles.RenameRule);
-      // 
       // timerSaveSettings
       // 
       this.timerSaveSettings.Interval = 60;
       this.timerSaveSettings.Tick += new System.EventHandler(this.timerSaveSettings_Tick);
+      // 
+      // directoriesMenuStrip
+      // 
+      this.directoriesMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteDirToolStripMenuItem});
+      this.directoriesMenuStrip.Name = "directoriesMenuStrip";
+      this.directoriesMenuStrip.Size = new System.Drawing.Size(153, 48);
+      // 
+      // deleteDirToolStripMenuItem
+      // 
+      this.deleteDirToolStripMenuItem.Name = "deleteDirToolStripMenuItem";
+      this.deleteDirToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+      this.deleteDirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.deleteDirToolStripMenuItem.Text = "Delete";
+      this.deleteDirToolStripMenuItem.Click += new System.EventHandler(this.deleteDirToolStripMenuItem_Click);
       // 
       // MainForm
       // 
@@ -481,9 +500,10 @@
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
       this.splitContainer2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.gridRules)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.renameRuleBindingSource)).EndInit();
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.renameRuleBindingSource)).EndInit();
+      this.directoriesMenuStrip.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -524,6 +544,8 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn patternDataGridViewTextBoxColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn formatDataGridViewTextBoxColumn;
     private System.Windows.Forms.Timer timerSaveSettings;
+    private System.Windows.Forms.ContextMenuStrip directoriesMenuStrip;
+    private System.Windows.Forms.ToolStripMenuItem deleteDirToolStripMenuItem;
   }
 }
 

@@ -164,6 +164,12 @@ namespace RenameFiles
       }
     }
 
+    private bool Confirm(string message, string caption)
+    {
+      return MessageBox.Show(this, message, caption, 
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+    }
+
     private void BindingSource_ListChanged(object sender, ListChangedEventArgs e)
     {
       timerSaveSettings.Stop();
@@ -204,6 +210,22 @@ namespace RenameFiles
     private void timerSaveSettings_Tick(object sender, EventArgs e)
     {
       SaveSettings();
+    }
+
+    private void deleteDirToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      var selectedRows = gridDirectories.SelectedRows;
+      if (selectedRows.Count > 0 && Confirm("Are you sure you want to remove the selected directories?", "Confirm"))
+      {
+        var dirs = selectedRows
+          .OfType<DataGridViewRow>()
+          .Select(r => r.DataBoundItem as DirectoryInfo)
+          .ToArray();
+        foreach (var dir in dirs)
+        {
+          directoryInfoBindingSource.Remove(dir);
+        }
+      }
     }
   }
 }

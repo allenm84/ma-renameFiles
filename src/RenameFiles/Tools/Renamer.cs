@@ -18,7 +18,7 @@ namespace RenameFiles
       {
         foreach (var rule in rules)
         {
-          form.AddTab(rule.Contains, Run(dir, rule));
+          form.AddTab($"({dir.Name}) {rule.Contains}", Run(dir, rule));
         }
       }
       form.Show(owner);
@@ -26,6 +26,9 @@ namespace RenameFiles
 
     private static IEnumerable<RenameResult> Run(DirectoryInfo dir, RenameRule rule)
     {
+      if (!dir.Exists)
+        yield break;
+
       var files = dir
         .EnumerateFiles()
         .Where(f => Regex.IsMatch(f.Name, rule.Contains, RegexOptions.IgnoreCase))
